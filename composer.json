@@ -1,0 +1,18 @@
+{
+    "name": "atournayre/doctrine-component",
+    "description": "Ce composant est destiné à fournir des utilitaires Doctrine.",
+    "type": "library",
+    "require": {
+        "php": ">=7.4",
+        "doctrine/orm": "^2.9",
+        "doctrine/doctrine-bundle": "^2.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "atournayre",
+            "email": "aurelien.tournayre@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
