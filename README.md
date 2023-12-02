@@ -1,53 +1,42 @@
-# Doctrine
+# Doctrine component
 
-Ce composant est destiné à fournir des utilitaires Doctrine.
+This component add some features to help Doctrine entities management.
 
 ## Installation
 ```shell
-# A définir
+composer require atournayre/doctrine-component
 ```
 
-### Exemples d'utilisation
+### Usage
 
 ```php
-use Atournayre\Common\Doctrine\ServiceEntityRepository;
+namespace App\Repository;
+
+use Atournayre\Component\Doctrine\Traits\SaveAndRemoveTrait;use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Atournayre\Component\Doctrine\Traits\SaveTrait;
+use Atournayre\Component\Doctrine\Traits\RemoveTrait;
 
 class TestRepository extends ServiceEntityRepository
 {
-    // ...
-    
-    public function multiplesEntitesAPersister(
-        Entite1 $entite1,
-        Collection $entite2Collection,
-        ?Entite3 $entite3 = null
-    ): void
-    {
-        $this->persist($entite1);    
-        $this->persist($entite2Collection);    
-        $this->persist($entite3);    
-        $this->flush();
-    }
+    // To persist entities
+    use SaveTrait;
+    // To remove entities
+    use RemoveTrait;
+    // To persist and remove entities
+    use SaveAndRemoveTrait;
+}
+```
 
+```php
+namespace App\Entity;
 
-    public function multiplesEntitesAPersisterSansArguments(
-        Entite1 $entite1,
-        Collection $entite2Collection,
-        ?Entite3 $entite3 = null
-    ): void
-    {
-        $entites = func_get_args();
-        foreach ($entites as $entite) {
-            $this->persist($entite);
-         }
-        $this->flush();
-    }
-    // ...
+use Atournayre\Component\Doctrine\Contracts\IsEntityInterface;
+
+class Test implements IsEntityInterface
+{
 }
 ```
 
 ## Contribution
 
-Si vous souhaitez voir une nouvelle fonctionnalité, vous pouvez la demander
-mais créer une pull request est un meilleur moyen de l'obtenir.
-
-Vous pouvez également soumettre une issue : toutes les contributions et questions sont appréciées :).
+Contributions are welcome!
